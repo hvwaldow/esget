@@ -282,7 +282,7 @@ get_credentials() {
         echo -n "(Downloading $MYPROXY_GETCERT... "
         mkdir -p $(dirname $MYPROXY_GETCERT)
         #if wget -q https://rainbow.llnl.gov/dist/devel/esgf-getcert/getcert.jar -O $MYPROXY_GETCERT;then
-	if echo $pass |myproxyclient logon -b -T -S -s $server -l  -o $ESG_CREDENTIALS -C $ESG_CERT_DIR;then
+	if echo $pass |myproxyclient logon -b -T -S -s $server -l $username -o $ESG_CREDENTIALS -C $ESG_CERT_DIR;then
             echo 'done getting certificate)'
             touch $MYPROXY_GETCERT
         else

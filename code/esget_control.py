@@ -1,7 +1,6 @@
 # use esget to download a subset of Cordex for testing
 import sys
 import os
-import cPickle
 
 import ConfigParser
 # reload(ConfigParser)
@@ -52,6 +51,13 @@ FINISH = True
 # Cleans temporary file and the log of the wget scripts.
 # THIS IS NECESSARY BEFORE THE NEXT RUN!
 CLEAN = True
+
+# Experience shows that failure to download a file is often
+# intermittent -- it will download next time.
+# If CYCLE == True, the task will be repeated until the number
+# of failed downloads in two successive runs remains constant.
+# CYCLE == True implies CLEAN == True
+CYCLE = True
 
 # Whether to clear the log. If False, logging information for
 # subsequent runs is appended.
@@ -112,12 +118,16 @@ def download(W):
 def finish(F, C):
     F.check_dl(C)
     F.finish_cycle()
+    no_failed = C.mk_failed_table()
     if CLEAN:
         cleanlog = CLEANLOG
         F.cleanup(cleanlog=cleanlog)
-
+    return(no_failed)
 
 if __name__ == '__main__':
+
+    if CYCLE:
+        CLEAN = True
 
     # get configuration
     config = ConfigParser.SafeConfigParser()
@@ -144,20 +154,27 @@ if __name__ == '__main__':
     # Initialize ESG-search module
     S = esget_esgf.ESG_search(config, C)
 
-    # Search ESGF for requested GeoMIP files
-    # the results are written to tmpdir
-    # Update database
-    if ESGSEARCH:
-        esgsearch(S)
-        postqueryupdate(C, F)
+    no_failed_old = 0
+    while True:
+        # Search ESGF for requested files
+        # the results are written to tmpdir
+        # Update database
+        if ESGSEARCH:
+            esgsearch(S)
+            postqueryupdate(C, F)
 
-    # Initialize wget-download module
-    W = esget_wget.EsgetWget(config, C)
+        # Initialize wget-download module
+        W = esget_wget.EsgetWget(config, C)
 
-    # Download
-    if DOWNLOAD:
-        download(W)
+        # Download
+        if DOWNLOAD:
+            download(W)
 
-    # checking downloads / moving files
-    if FINISH:
-        finish(F, C)
+        # checking downloads / moving files
+        if FINISH:
+            no_failed = finish(F, C)
+
+        if not CYCLE or no_failed == no_failed_old:
+            break
+        else:
+            no_failed_old = no_failed

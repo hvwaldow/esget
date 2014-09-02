@@ -271,3 +271,37 @@ class EsgetDB(object):
         conn, c = self.connect()
         no_localfiles = c.execute("SELECT COUNT() FROM localfiles").fetchall()
         return(no_localfiles[0][0])
+
+    def mk_failed_table(self):
+        def read_chksums(c, table):
+            selstring = 'SELECT checksum, checksum_type FROM esgffiles' \
+                        if table == 'esgffiles' \
+                        else 'SELECT md5, sha256 FROM localfiles'
+            chk_esgf = c.execute(selstring).fetchall()
+            return(chk_esgf)
+        conn, c = self.connect()
+        self._log.info("Making table of failed downloads")
+        resloc = read_chksums(c, 'localfiles')
+        self._log.info("localfiles has {0} entries.".format(len(resloc)))
+        resesgf = read_chksums(c, 'esgffiles')
+        self._log.info("esgffiles has {0} entries.".format(len(resesgf)))
+        c.execute('''DROP TABLE IF EXISTS failed''')
+        c.execute(''' CREATE TABLE failed AS
+        SELECT * FROM esgffiles WHERE 1=2''')
+        allfields = c.execute("PRAGMA table_info(failed)").fetchall()
+        allfields = [x[1] for x in allfields]
+        for idx_col in allfields:
+            c.execute("CREATE INDEX IF NOT EXISTS {0} ON {2} ({1})".
+                      format("idx_failed_"+idx_col, idx_col, "failed"))
+        setloc = [max(x) for x in resloc]
+        setesgf = [x[0] for x in resesgf]
+        failedfiles = [x for x in setesgf if x not in setloc]
+        ffstring = "('"+"','".join(failedfiles) + "')"
+        c.execute('''INSERT OR REPLACE INTO failed
+        SELECT * FROM esgffiles
+        WHERE checksum IN {0}'''.format(ffstring))
+        no_failed = c.execute('''SELECT COUNT(*) FROM failed''').fetchall()
+        no_failed = no_failed[0][0]
+        self._log.info("No failed downloads: {0}".format(no_failed))
+        conn.close()
+        return(no_failed)
