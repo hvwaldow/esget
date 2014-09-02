@@ -1,27 +1,25 @@
 # use esget to download a subset of Cordex for testing
 import sys
 import os
+import cPickle
 
 import ConfigParser
-reload(ConfigParser)
-
+# reload(ConfigParser)
 import esget_logger
-reload(esget_logger)
-
+# reload(esget_logger)
 import esget_db
-reload(esget_db)
-
+# reload(esget_db)
 import esget_esgf
-reload(esget_esgf)
-
+# reload(esget_esgf)
 import esget_fs
-reload(esget_fs)
-
+# reload(esget_fs)
 import esget_wget
-reload(esget_wget)
-
+# reload(esget_wget)
 import esget_local_files
-reload(esget_local_files)
+# reload(esget_local_files)
+
+# ###### Edit to modify the behaviour of Esget ################################
+
 
 # This clears the database, all info about local files and their checksums
 # is lost. Pretty much imples  SCAN=True.
@@ -31,6 +29,11 @@ RESETDB = False
 # table "localfiles" of the database.
 # This should only be necessary initially, and to fix a corrupt
 # table of local files. This makes only sense with RESETDB = True
+# ATTENTION: Scan should only be used to create a special database
+# that represents the whole storage-tree. A ESGSEARCH - operation
+# with that database better uses a query-definition that represents
+# a superset of the whole storage-tree, or else files will be in-
+# correctly unlinked.
 SCAN = False
 
 # Necessary before any downloading can occur. Queries the ESGF-database,
@@ -53,6 +56,8 @@ CLEAN = True
 # Whether to clear the log. If False, logging information for
 # subsequent runs is appended.
 CLEANLOG = False
+
+# ##############################################################################
 
 
 def scanlocal(LF, C, rm_tmp_scanres=False):
@@ -113,6 +118,7 @@ def finish(F, C):
 
 
 if __name__ == '__main__':
+
     # get configuration
     config = ConfigParser.SafeConfigParser()
     configfile = os.path.join("../config", sys.argv[1])

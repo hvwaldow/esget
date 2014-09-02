@@ -120,13 +120,15 @@ class EsgetFS(object):
             self._log.info("Makinf directory: {0}".format(storepath))
             os.makedirs(storepath)
         try:
-            shutil.move(dlpath, storepath)
+            shutil.copy(dlpath, storepath)
         except:
             self._log.error(("Problem copying file\n" +
                              "from: {0}\n" +
                              "to: {1}. " +
                              "Leaving untuched")
                             .format(dlpath, storepath))
+            return()
+        os.remove(dlpath)
         return()
 
     def check_dl(self, esgetdb_obj):

@@ -1,0 +1,10 @@
+{ "project": ["CORDEX"],
+  "variable": ["pr","psl","ps","ta","tas"],
+  "time_frequency": ["day","3hr","6hr"],
+  "experiment": ["evaluation","historical","rcp26","rcp45","rcp85"],
+  "domain": ["AFR-44", "AFR-44i"],
+  "format": "application%2Fsolr%2Bjson",
+  "type": "File",
+  "latest": "true",
+  "replica": "false"
+}

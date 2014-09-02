@@ -62,18 +62,23 @@ class EsgetDB(object):
     def init_db(self, reset=False):
         '''Initiate database with empty tables "localfiles" and "esgffiles".
         Does nothing if tables already exist, unless reset=True'''
-        self._log.info("Initializing database: {0}".format(self.dbname))
-        conn, c = self.connect()
-        self._log.info("resetting database {0}".format(self.dbname))
-        if reset:
+        if not os.path.isfile(self.dbname):
+            self._log.info("Creating initial database: {0}".format(self.dbname))
+            conn, c = self.connect()
+            self._mktable("localfiles", c)
+            self._mktable("esgffiles", c)
+            conn.close()
+        elif reset:
+            self._log.info("Resetting database {0}".format(self.dbname))
+            conn, c = self.connect()
             c.execute('DROP TABLE IF EXISTS localfiles')
             c.execute('DROP TABLE IF EXISTS esgffiles')
             self._mktable("localfiles", c)
             self._mktable("esgffiles", c)
+            conn.close()
         else:
-            self._log.warning("doing nothing: set \"reset=True\" " +
-                              "if you are serious")
-        conn.close()
+            self._log.info(("Database {0} exists and is not to be " +
+                            "reset - doing nothing").format(self.dbname))
 
     def insert_files(self, recordlist):
         '''Indiscrimantly inserts local files. Should only be used for

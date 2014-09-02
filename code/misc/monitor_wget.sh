@@ -1,6 +1,6 @@
 #!/bin/bash
 
-command="'ps aux |grep \"/bin/bash /home/hvwaldow/scripts/esg/esgdl/wget/\" |grep -v \"grep\" |wc -l'"
+command="'ps aux |grep \"/bin/bash /home/hvwaldow/esget/tmp/wget/\" |grep -v \"grep\" |wc -l'"
 
 while true; do
   atmoscount=`eval ssh atmos $command`
