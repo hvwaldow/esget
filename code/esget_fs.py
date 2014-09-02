@@ -42,7 +42,7 @@ class EsgetFS(object):
         os.umask(0022)
         if not os.path.exists(unlinkpath):
             self._log.info("Making unlink - directory {0}".format(unlinkpath))
-            os.mkdir(unlinkpath, 0755)
+            os.mkdirs(unlinkpath, 0755)
         self._log.info("Moving {0} files into {1}"
                        .format(len(ulfiles), unlinkpath))
         for f in ulfiles:
