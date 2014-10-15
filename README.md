@@ -21,5 +21,5 @@ This is beta-ware.
 
 We successfully run esget to mirror a large part of CORDEX. The repo includes a sample configuration for a small subset of CORDEX, for testing.
 
-The configuration file (config/corex_test.cfg) is very well documented and should get you started if you feel adventurous. However, other documentation is missing at the moment and we aim at a proper first release by the beginning of September 2014.
+The configuration file (config/corex_test.cfg) is very well documented and should get you started if you feel adventurous. However, other documentation is missing at the moment and we aim at a proper first release by the beginning of November 2014.
 [Send me a note](https://github.com/hvwaldow) if you are interested to get a notification once we have a good release.
