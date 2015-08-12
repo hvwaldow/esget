@@ -1,6 +1,0 @@
-Testing search:
-
-esgsearch(S)
-
-output: tmp/queryres_{}.cpy
-logfile:

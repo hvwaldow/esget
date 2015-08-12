@@ -1,7 +1,0 @@
-{ "project": ["CORDEX"],
-  "format": "application%2Fsolr%2Bjson",
-  "type": "File",
-  "latest": "true",
-  "replica": "false",
-  "time_frequency": "day"
- }
