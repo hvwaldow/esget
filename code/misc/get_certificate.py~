@@ -1,0 +1,31 @@
+from myproxy.client import MyProxyClient
+
+server = "pcmdi9.llnl.gov"
+username = "haraldesg"
+password = "ESGiertt11"
+server = "pcmdi9.llnl.gov"
+outfile = "./testcertificate.pem"
+
+mpc = MyProxyClient(hostname=server, caCertDir="./globus/certificates")
+
+cert = mpc.logon(username, password,
+                 credname=None, bootstrap=True,
+                 updateTrustRoots=False)
+
+with open(outfile, "w") as of:
+    for c in cert:
+        of.write(c)
+
+# for i in dir(mpc):
+#     print("%s : %s" % (i, mpc.__getattribute__(i)))
+
+
+
+# print(cert)
+# /c2sm/hvwaldow/virtualenvs/venv_esget/bin/myproxyclient
+# {'proxyCertLifetime': 43200, 'hostname': 'pcmdi9.llnl.gov', 'port': 7512,
+#  'caCertDir': '/home/hvwaldow/.globus/certificates'}
+# {'username': 'haraldesg', 'openid': None, 'hostname': 'pcmdi9.llnl.gov', 
+# 'no_pass': False, 'trustroots': False, 'proxy_lifetime': None, 'bootstrap': True, 
+# 'port': 7512, 'outfile': './testcredits.pem', 'credname': None, 'lifetime': 43200, 
+# 'stdin_pass': True, 'cadir': None}

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+server="pcmdi9.llnl.gov"
+username="haraldesg"
+pass="ESGiertt11"
+
+ESG_CREDENTIALS ="./testcredits.pem"
+
+echo $pass |myproxyclient logon -b -T -S -s $server -l $username -o $ESG_CREDENTIALS 
+
+#-C $ESG_CERT_DIR

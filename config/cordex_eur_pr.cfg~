@@ -1,0 +1,247 @@
+################################################################################
+########## Customize this part! ################################################
+################################################################################
+[DEFAULT]
+
+## The main directory of esget, where code, configuration, etc. lives.
+## Absolute path relative to executing host
+##esget_home: /net/bio/c2sm/hvwaldow/esget_cordex
+esget_home: /c2sm/hvwaldow/esget_cordex
+
+## Path for storing temporary wget-scripts and certificates on worker-hosts.
+## Relative to user's $HOMEr.
+## Make sure this directory exists and is writable on all hosts
+## defined in the "Hosts"-section below.
+wget_remote_dir: tmp/esget/wget
+
+## The root of the storage-tree below which the downloaded files will be stored.
+## Absolute path from the machine on which Esget is running! 
+fileroot: /net/atmos/data/CORDEX
+
+## The root of the storage-tree below which the downloaded files will be stored.
+## Absolute path from a specific machine, generally valid by convention.
+## This root will be used to for the "filename"-field in the database.
+## Here we use the path from the machine to which the storage is attached.
+storageroot: /data/CORDEX
+
+## The name of the query. Has to be unique.
+## From this name are derived names for the database and for the
+## file containing the search-query definition.
+##
+## The search-query definition
+## - has to be in the directory <esget_home>/config/queries/
+## - its name must be <query_name>.json
+## - it has to be a json array.
+## - it maps 1:1 to a ESGF-query.
+## Have a look at the example "cordex_test.json, and consult the 
+## documentation to learn more about its syntax.
+##
+## The databse is automatically generated (at first run) and lives
+## in <esget_home>/db
+queryname: cordex_eur_ALL
+
+## The "OpenId" required from ESGF. Obtain one, if needed, here:
+## https://pcmdi9.llnl.gov/esgf-web-fe/createAccount
+## After registration, log in and register for the
+## appropriate group to be eligible for getting that data:
+## Click on "Local Groups Registered" -> "Show All Available".
+## Then "Join" for example "CORDEX research".
+##
+## The "OpenID" has the form of a URL, e.g.:
+## https://pcmdi9.llnl.gov/esgf-idp/openid/haraldesg
+## Here, two parts are required:
+##
+## 1. esg_id_server, e.g. "pcmdi9.llnl.gov"
+## 2. esgf_id, e.g. "haraldesg"
+esgf_id_server: pcmdi9.llnl.gov
+esgf_id: haraldesg
+esgf_id_password: ESGiertt11
+
+
+## The fields for the esgf-table of files that is stored in the database.
+## Comma seperated list of fieldnames of the ESGF "Facets".
+## If in doubt, better store more information than less - it is cheap.
+## A list of allowed facets (at the JPL datanode) can be obtained like so:
+## http://esg-datanode.jpl.nasa.gov/esg-search/search?facets=*&limit=0&distrib=false
+## Available und useful fields can differ from project to project.
+## A somewhat lengthy description for CMIP5 is here:
+## http://cmip-pcmdi.llnl.gov/cmip5/docs/cmip5_data_reference_syntax.pdf
+## The respective documentation for CORDEX can be obtained via this URL:
+## https://madwiki.dkrz.de/farm/CORDEXDataManagement#ESGF_CORDEX_search_facets
+##
+## WHITESPACE IS NOT ALLOWED!
+##
+## MANDATORY FIELDS ARE: size, checksum, checksum_type
+##
+## FIELDS THAT ARE NOT ALLOWED: url_http, ,url_gsiftp, have
+## (These are created automatically)
+##
+## CMIP5 / GeoMIP
+##esgffields: experiment,cmor_table,time_frequency,variable,institute,model,ensemble,version,title,size,checksum,checksum_type,cf_standard_name,instance_id,master_id,id,timestamp,tracking_id
+##
+## CORDEX
+esgffields: domain,institute,driving_model,experiment,ensemble,model,time_frequency,variable,version,title,size,checksum,checksum_type,cf_standard_name,instance_id,master_id,id,timestamp,tracking_id,rcm_model
+
+
+## The fields from which the path in the local storage-tree
+## (below <fileroot>) is constructed.
+## Comma seperated list of facet names.
+## WHITESPACE IS NOT ALLOWED!
+## HAS TO BE SUBSET OF <esgffields>!
+##
+## GeoMIP example
+##pathfields: experiment,cmor_table,time_frequency,variable,institute,model,ensemble,version
+##
+## CORDEX
+pathfields: domain,experiment,time_frequency,variable,institute,driving_model,model,ensemble,version
+
+
+########## The following sections define the machines which are
+########## used for downloading.
+########## THE SECTION TITLE HAS TO START WITH "HOST_".
+########## followed by a UNIQUE identifier.
+
+[HOST_bio]
+hostname: bio.ethz.ch
+## absolute path to storage-tree root from host
+
+fileroot: /net/atmos/data/CORDEX
+##fileroot: /net/bio/c2sm/hvwaldow/tmp/download
+
+## number of parallell download jobs
+no_jobs: 6
+
+[HOST_atmos]
+hostname: atmos.ethz.ch
+## absolute path to storage-tree root from host
+
+fileroot: /data/CORDEX
+##fileroot: /net/bio/c2sm/hvwaldow/tmp/download
+
+## number of parallell download jobs
+no_jobs: 6
+
+[HOST_thermo]
+hostname: thermo.ethz.ch
+## absolute path to storage-tree root from host
+
+# DEBUG
+fileroot: /net/atmos/data/CORDEX
+##fileroot: /net/bio/c2sm/hvwaldow/tmp/download
+
+## number of parallell download jobs
+no_jobs: 6
+
+[HOST_litho]
+hostname: litho.ethz.ch
+## absolute path to storage-tree root from host
+
+# DEBUG
+fileroot: /net/atmos/data/CORDEX
+##fileroot: /net/bio/c2sm/hvwaldow/tmp/download
+
+## number of parallell download jobs
+no_jobs: 6
+
+#################################################################################
+########## Maybe customize this part. Should not be necessary, initially ########
+#################################################################################
+[Tuning]
+
+## currently only loglevels ERROR, WRNING and INFO are used
+loglevel: INFO
+# loglevel: WARNING
+# loglevel: ERROR
+# loglevel: INFO
+# loglevel: DEBUG
+
+## What to do if remote files have no checksum.
+## Without a checksum being reported by the ESGF-database,
+## esget has no way to figure out whether we already have a
+## particular file or not. Other fields such as tracking_id,
+## id, etc. have proven to be unreliable. If files without
+## checksum are encountered, this should be considered a bug
+## of the data source and the respective maintainer should be notified.
+## Possible values are "keep" and "get":
+##
+## keep
+## 1. Files in the local database that had no checksum when
+##    they were downloaded are considered up-to-date.
+## 2. Remote files that report no checksum are not downloaded.
+##
+## get
+## 1. Files in the local database that had no checksum when
+##    they were downloaded are considered out-dated and are
+##    moved to into the sub-tree <fileroot>/unlinked
+## 2. Remote files that report no checksum are downloaded.
+no_chksum_action: get
+
+## The filename of the file that contains the description of the ESGF gateways
+## that are queried.
+## The file should be in the directory <esget_home>/config/queries/.
+## This has to be a json array. The provided "gateways_all.json" contains
+## all 20 know gateways at the time of writing. It should be obvious
+## from looking at gateways_all.json how this can be modified.
+## Reasons to modify could be:
+## - You observe that specific gateways are broken or respons slowly
+##    so you don't want to waste time querying them.
+## - You want to limit the query to a smaller subset of reliable
+##    gateways to speed up the query
+## - New gateways become available.
+## 
+## Using  gateways_all.json should be fine in any case.
+#gatewayfile: gateways_all.json
+gatewayfile: gateways_cordex.json
+
+## Files (or directories) that live in <fileroot>, but are not
+## part of the storage tree.
+## VALUES "download", "unlinked", AND <publicdbdir> ARE MANDATORY!
+## Listing here files that do not exist doesn't hurt
+no_storagefiles: download,unlinked,db,TEST,README.txt,README-rsync.txt
+
+# The subdirectory-name beneath the storage-tree root
+# (<fileroot>) in which the database is copied for general access
+# after a full run (by esget_fs.EsgetFS.finish_cycle()).
+publicdbdir: db
+
+########## Some tuning parameters ##########
+
+## The maximum volume of data that is downloaded by one process in bytes.
+## I just thought it is good to limit it.
+## If it is too large with respect to the total download volume,
+## then the gain from parallelization might suffer.
+## 10GB has worked well so far.
+maxchunksize: 10000000000
+
+# Timeout in seconds for database request
+timeout: 120
+
+# The maximum number of results per query.
+# The maximum value imposed by ESGF is 10000.
+# Try increasing for improved performance.
+querylimit: 1000
+
+# number of parallel queries for database query
+# if this is too big, esgf nodes might block your IP.
+no_queryproc: 5
+
+#################################################################################
+########## Better not modify anything below #####################################
+#################################################################################
+[Paths]
+
+searchdeffile: %(esget_home)s/config/queries/%(queryname)s.json
+logfile: %(esget_home)s/log/%(queryname)s.log
+tmpdir: %(esget_home)s/tmp
+dbname: %(esget_home)s/db/%(queryname)s.db
+wget_template: %(esget_home)s/config/templates/wget_template.sh
+wget_dir: %(tmpdir)s/wget
+wget_log_dir: %(esget_home)s/log/wget
+dbarchivedir: %(esget_home)s/db
+local_fs_record: %(esget_home)s/tmp/scanresult/localfsrecord.cpy
+gatewaydir: %(esget_home)s/config/gateways
+remote_cert_dir: %(wget_remote_dir)s/globus/cacertdir
+remote_certificate: %(wget_remote_dir)s/globus/credentials.pem
+remote_cookies: %(wget_remote_dir)s/globus/cookies
+
+########## END of CONFIG ########################################################

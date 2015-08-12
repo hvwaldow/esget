@@ -1,0 +1,8 @@
+{ "project": ["CORDEX"],
+  "format": "application%2Fsolr%2Bjson",
+  "type": "File",
+  "latest": "true",
+  "replica": "false",
+  "variable": "pr",
+  "domain": ["EUR-44", "EUR-44i","EUR-11","EUR-11i"]
+ }

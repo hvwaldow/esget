@@ -1,0 +1,117 @@
+#!/bin/bash
+##############################################################################
+# wget-script - template
+# Part of Esget - HvW - 2015/04/08
+###############################################################################
+
+download_files="'snd_EUR-44_ICHEC-EC-EARTH_rcp45_r3i1p1_DMI-HIRHAM5_v1_day_20460101-20501231.nc' 'http://cordexesg.dmi.dk/thredds/fileServer/cordex_general/cordex/output/EUR-44/DMI/ICHEC-EC-EARTH/rcp45/r3i1p1/DMI-HIRHAM5/v1/day/snd/v20141003/snd_EUR-44_ICHEC-EC-EARTH_rcp45_r3i1p1_DMI-HIRHAM5_v1_day_20460101-20501231.nc' 'MD5' '24a70736de22fcd4297f0c386e731eab'
+'snd_EUR-44_ICHEC-EC-EARTH_rcp45_r3i1p1_DMI-HIRHAM5_v1_day_20410101-20451231.nc' 'http://cordexesg.dmi.dk/thredds/fileServer/cordex_general/cordex/output/EUR-44/DMI/ICHEC-EC-EARTH/rcp45/r3i1p1/DMI-HIRHAM5/v1/day/snd/v20141003/snd_EUR-44_ICHEC-EC-EARTH_rcp45_r3i1p1_DMI-HIRHAM5_v1_day_20410101-20451231.nc' 'MD5' '09690c88cd4730c0488aed6843124f08'
+'snd_EUR-44_ICHEC-EC-EARTH_rcp45_r3i1p1_DMI-HIRHAM5_v1_day_20360101-20401231.nc' 'http://cordexesg.dmi.dk/thredds/fileServer/cordex_general/cordex/output/EUR-44/DMI/ICHEC-EC-EARTH/rcp45/r3i1p1/DMI-HIRHAM5/v1/day/snd/v20141003/snd_EUR-44_ICHEC-EC-EARTH_rcp45_r3i1p1_DMI-HIRHAM5_v1_day_20360101-20401231.nc' 'MD5' '0a673ede0008a1a27d4f0b6de609bed7'"
+
+download() {
+    wget="wget $customwget ${insecure:+--no-check-certificate} -c $PKI_WGET_OPTS"
+    
+    while read line
+    do
+        # read csv here document into proper variables
+        eval $(awk -F "' '" '{$0=substr($0,2,length($0)-2); $3=tolower($3); print "file=\""$1"\";url=\""$2"\";chksum_type=\""$3"\";chksum=\""$4"\""}' <(echo $line) )
+
+        #Process the file
+        echo -n "$file ..."
+
+        #get the cached entry if any.
+        cached="$(grep -e "^$file" "$CACHE_FILE")"
+        
+        #if we have the cache entry but no file, clean it.
+        if [[ ! -f $file && "$cached" ]]; then
+            #the file was removed, clean the cache
+            remove_from_cache "$file"
+            unset cached
+        fi
+        
+        #check it wasn't modified
+        if [[ -n "$cached" && "$(get_mod_time_ $file)" == $(echo "$cached" | cut -d ' ' -f2) ]]; then
+                    if [[ "$chksum" == "$(echo "$cached" | cut -d ' ' -f3)" ]]; then
+                echo "Already downloaded and verified"
+                continue
+            elif ((update_files)); then
+                #user want's to overwrite newer files
+                rm $file
+                remove_from_cache "$file"
+                unset cached
+            else
+                #file on server is different from what we have. 
+                echo "WARNING: The remote file was changed (probably a new version is available). Use -U to Update/overwrite"
+                continue
+            fi
+        fi
+        unset chksum_err_value chksum_err_count
+        
+        while : ; do
+            # (if we had the file size, we could check before trying to complete)
+            echo "Downloading"
+            [[ ! -d "$(dirname "$file")" ]] && mkdir -p "$(dirname "$file")"
+            if ((dry_run)); then
+                #all important info was already displayed, if in dry_run mode just abort
+                #No status will be stored
+                break
+            else
+                $wget  $url || { failed=1; break; }
+            fi
+
+            #check if file is there
+            if [[ -f $file ]]; then
+                ((debug)) && echo file found
+                if [[ ! "$chksum" ]]; then
+                    echo "Checksum not provided, can't verify file integrity"
+                    break
+                fi
+                result_chksum=$(check_chksum "$file" $chksum_type $chksum)
+                if [[ "$result_chksum" != "$chksum" ]]; then
+                    echo "  $chksum_type failed!"
+                    if ((clean_work)); then
+                        if !((chksum_err_count)); then
+                                chksum_err_value=$result_chksum
+                                chksum_err_count=2
+                            elif ((checksum_err_count--)); then
+                                if [[ "$result_chksum" != "$chksum_err_value" ]]; then
+                                    #this is a real transmission problem
+                                    chksum_err_value=$result_chksum
+                                    chksum_err_count=2
+                                fi
+                            else
+                                #ok if here we keep getting the same "different" checksum
+                                echo "The file returns always a different checksum!"
+                                echo "Contact the data owner to verify what is happening."
+                                echo
+                                sleep 1
+                                break
+                            fi
+                        
+                            rm $file
+                            #try again
+                            echo -n "  re-trying..."
+                            continue
+                    else
+                            echo "  don't use -p or remove manually."
+                    fi
+                else
+                    echo "  $chksum_type ok. done!"
+                    echo "$file" $(get_mod_time_ "$file") $chksum >> $CACHE_FILE
+                fi
+            fi
+            #done!
+            break
+        done
+        
+        if ((failed)); then
+            echo "download failed"
+            # most common failure is certificate expiration, so check this
+            #if we have the pasword we can retrigger download
+            ((!skip_security)) && [[ "$pass" ]] && check_cert
+            unset failed
+        fi
+        
+done <<<"$download_files"
+
+}

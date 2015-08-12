@@ -1,0 +1,62 @@
+# A script that fixes double /unlinked/<date> parts in the filename
+# field of table "localfiles"
+
+import sys
+sys.path.insert(0, "..")
+import os
+# import cPickle
+###############
+import ConfigParser
+# reload(ConfigParser)
+import esget_logger
+# reload(esget_logger)
+import esget_db
+#reload(esget_db)
+import esget_esgf
+# reload(esget_esgf)
+import esget_fs
+# reload(esget_fs)
+import esget_wget
+# reload(esget_wget)
+import esget_local_files
+# reload(esget_local_files)
+
+import re
+
+RESETDB = False
+
+config = ConfigParser.SafeConfigParser()
+configfile = os.path.join("../../config", "cordex_eur_ALL.cfg")
+config.read(configfile)
+config.set('Paths', 'logfile', '../../log/debug.log')
+esget_logger.Logging(config)
+
+esget_logger.logfile = "../../log/DEBUG.log"
+C = esget_db.EsgetDB(config)
+C.dbname = "../../db/cordex_eur_ALL.db"
+C.init_db(reset=True if RESETDB else False)
+
+conn, c = C.connect()
+rows = list(c.execute('''SELECT ROWID, filename FROM localfiles
+WHERE unlink_date != 0'''))
+
+
+# fixes double-unlink path in filename
+def chfn(fn):
+    if fn.count("unlinked") == 2:
+        newfn = re.sub('/unlinked/2015-01-19', '', fn, count=1)
+        return(newfn)
+    else:
+        return(fn)
+
+newrows = [{"id": x[0], "filename": chfn(x[1])} for x in rows]
+print("Found {} rows needing substitution".format(len(newrows)))
+
+conn.execute('''UPDATE localfiles SET filename=:filename
+WHERE ROWID=:id''', newrows[0])
+
+conn.executemany('''UPDATE localfiles SET filename=:filename
+WHERE ROWID=:id''', newrows)
+
+conn.commit()
+conn.close()

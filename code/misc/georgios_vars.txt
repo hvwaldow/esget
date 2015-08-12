@@ -1,0 +1,338 @@
+['./cordex_db_report.py', 'EUR-11', 'ps', 'day', 'esgffiles']
++----+------------+-------------+-----------------------+------------+---------+-------------+
+|    | Experiment |  Institute  |     Driving Model     |   Model    | # Files | Volume [GB] |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+| 0  | evaluation |    CLMcom   |      ECMWF-ERAINT     | CCLM4-8-17 |    5    |  2820080718 |
+| 1  | evaluation |     DMI     |      ECMWF-ERAINT     |  HIRHAM5   |    6    |  2788094972 |
+| 2  | evaluation | IPSL-INERIS |      ECMWF-ERAINT     |  WRF331F   |    5    |  2857525486 |
+| 3  | evaluation |     KNMI    |      ECMWF-ERAINT     |  RACMO22E  |    8    |  4083739679 |
+| 4  | evaluation |     SMHI    |      ECMWF-ERAINT     |    RCA4    |    7    |  2507592477 |
+| 5  | historical |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    12   |  7901066860 |
+| 6  | historical |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    12   |  7914642986 |
+| 7  | historical |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    12   |  7921511764 |
+| 8  | historical |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    11   |  6678763341 |
+| 9  | historical | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    7    |  4994788756 |
+| 10 | historical |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    12   |  6732355032 |
+| 11 | historical |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    8    |  2911956163 |
+| 12 | historical |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    8    |  2915257302 |
+| 13 | historical |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    8    |  2901661677 |
+| 14 | historical |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    8    |  2004293740 |
+| 15 | historical |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    8    |  2914743923 |
+| 16 |   rcp26    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  5366259212 |
+| 17 |   rcp45    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 13387739278 |
+| 18 |   rcp45    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 13389985120 |
+| 19 |   rcp45    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 13398513974 |
+| 20 |   rcp45    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   | 11522636245 |
+| 21 |   rcp45    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 13544167542 |
+| 22 |   rcp45    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   | 11401688521 |
+| 23 |   rcp45    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  5357789175 |
+| 24 |   rcp45    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  5363328019 |
+| 25 |   rcp45    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  7641131350 |
+| 26 |   rcp45    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  5211724378 |
+| 27 |   rcp45    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  7678587137 |
+| 28 |   rcp85    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 13381903018 |
+| 29 |   rcp85    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 13381080625 |
+| 30 |   rcp85    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 13389817348 |
+| 31 |   rcp85    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   | 11516031387 |
+| 32 |   rcp85    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 13544167305 |
+| 33 |   rcp85    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   | 11395740566 |
+| 34 |   rcp85    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  5354298305 |
+| 35 |   rcp85    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  5358009227 |
+| 36 |   rcp85    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  5323103369 |
+| 37 |   rcp85    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  5210549717 |
+| 38 |   rcp85    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  5356241827 |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+['./cordex_db_report.py', 'EUR-11', 'tas', 'day', 'esgffiles']
++----+------------+-------------+-----------------------+------------+---------+-------------+
+|    | Experiment |  Institute  |     Driving Model     |   Model    | # Files | Volume [GB] |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+| 0  | evaluation |    CLMcom   |      ECMWF-ERAINT     | CCLM4-8-17 |    5    |  2747636541 |
+| 1  | evaluation |     DMI     |      ECMWF-ERAINT     |  HIRHAM5   |    6    |  2274579694 |
+| 2  | evaluation | IPSL-INERIS |      ECMWF-ERAINT     |  WRF331F   |    5    |  2799155139 |
+| 3  | evaluation |     KNMI    |      ECMWF-ERAINT     |  RACMO22E  |    8    |  3000188847 |
+| 4  | evaluation |     SMHI    |      ECMWF-ERAINT     |    RCA4    |    7    |  2007726995 |
+| 5  | historical |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    12   |  7713100392 |
+| 6  | historical |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    12   |  7722750754 |
+| 7  | historical |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    12   |  7714473871 |
+| 8  | historical |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    11   |  5475494528 |
+| 9  | historical | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    7    |  4912592266 |
+| 10 | historical |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    12   |  4905470423 |
+| 11 | historical |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    8    |  2325249792 |
+| 12 | historical |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    8    |  2338026977 |
+| 13 | historical |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    8    |  2320281961 |
+| 14 | historical |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    8    |  2316209288 |
+| 15 | historical |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    8    |  2338809890 |
+| 16 |   rcp26    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  6155251710 |
+| 17 |   rcp45    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 13056535667 |
+| 18 |   rcp45    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 13053159333 |
+| 19 |   rcp45    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 13036307658 |
+| 20 |   rcp45    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   |  9430922290 |
+| 21 |   rcp45    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 13298500208 |
+| 22 |   rcp45    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   |  8372176619 |
+| 23 |   rcp45    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  6134192953 |
+| 24 |   rcp45    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  6145678291 |
+| 25 |   rcp45    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  6105629275 |
+| 26 |   rcp45    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  6019341084 |
+| 27 |   rcp45    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  6148182984 |
+| 28 |   rcp85    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 13048537442 |
+| 29 |   rcp85    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 13043318334 |
+| 30 |   rcp85    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 13023746354 |
+| 31 |   rcp85    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   |  9408756962 |
+| 32 |   rcp85    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 13286125988 |
+| 33 |   rcp85    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   |  8375923421 |
+| 34 |   rcp85    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  6124624331 |
+| 35 |   rcp85    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  6132304703 |
+| 36 |   rcp85    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  6078381311 |
+| 37 |   rcp85    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  6011603433 |
+| 38 |   rcp85    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  6137314959 |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+['./cordex_db_report.py', 'EUR-11', 'tasmax', 'day', 'esgffiles']
++----+------------+-------------+-----------------------+------------+---------+-------------+
+|    | Experiment |  Institute  |     Driving Model     |   Model    | # Files | Volume [GB] |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+| 0  | evaluation |    CLMcom   |      ECMWF-ERAINT     | CCLM4-8-17 |    5    |  2796901752 |
+| 1  | evaluation |     DMI     |      ECMWF-ERAINT     |  HIRHAM5   |    6    |  1490268687 |
+| 2  | evaluation | IPSL-INERIS |      ECMWF-ERAINT     |  WRF331F   |    5    |  2829941812 |
+| 3  | evaluation |     KNMI    |      ECMWF-ERAINT     |  RACMO22E  |    8    |  2832302849 |
+| 4  | evaluation |     SMHI    |      ECMWF-ERAINT     |    RCA4    |    7    |  2009437361 |
+| 5  | historical |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    12   |  7851711531 |
+| 6  | historical |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    12   |  7858574448 |
+| 7  | historical |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    12   |  7847984509 |
+| 8  | historical |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    11   |  3548313101 |
+| 9  | historical | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    7    |  4952839723 |
+| 10 | historical |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    12   |  4632683506 |
+| 11 | historical |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    8    |  2314496532 |
+| 12 | historical |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    8    |  2330620978 |
+| 13 | historical |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    8    |  2303408602 |
+| 14 | historical |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    8    |  2307401678 |
+| 15 | historical |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    8    |  2346022541 |
+| 16 |   rcp26    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  6154609625 |
+| 17 |   rcp45    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 13292444062 |
+| 18 |   rcp45    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 13286459197 |
+| 19 |   rcp45    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 13267346834 |
+| 20 |   rcp45    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   |  6113966552 |
+| 21 |   rcp45    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 13421165211 |
+| 22 |   rcp45    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   |  7876775720 |
+| 23 |   rcp45    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  6120407657 |
+| 24 |   rcp45    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  6153535500 |
+| 25 |   rcp45    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  6099989791 |
+| 26 |   rcp45    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  6035394573 |
+| 27 |   rcp45    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  6184890650 |
+| 28 |   rcp85    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 13285619417 |
+| 29 |   rcp85    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 13277404324 |
+| 30 |   rcp85    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 13256707801 |
+| 31 |   rcp85    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   |  6109820748 |
+| 32 |   rcp85    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 13415272283 |
+| 33 |   rcp85    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   |  7877087779 |
+| 34 |   rcp85    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  6123090971 |
+| 35 |   rcp85    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  6153773865 |
+| 36 |   rcp85    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  6091670406 |
+| 37 |   rcp85    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  6041864071 |
+| 38 |   rcp85    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  6190087825 |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+['./cordex_db_report.py', 'EUR-11', 'tasmin', 'day', 'esgffiles']
++----+------------+-------------+-----------------------+------------+---------+-------------+
+|    | Experiment |  Institute  |     Driving Model     |   Model    | # Files | Volume [GB] |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+| 0  | evaluation |    CLMcom   |      ECMWF-ERAINT     | CCLM4-8-17 |    5    |  2785055119 |
+| 1  | evaluation |     DMI     |      ECMWF-ERAINT     |  HIRHAM5   |    6    |  1538745419 |
+| 2  | evaluation | IPSL-INERIS |      ECMWF-ERAINT     |  WRF331F   |    5    |  2865835528 |
+| 3  | evaluation |     KNMI    |      ECMWF-ERAINT     |  RACMO22E  |    8    |  2991386090 |
+| 4  | evaluation |     SMHI    |      ECMWF-ERAINT     |    RCA4    |    7    |  2129239970 |
+| 5  | historical |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    12   |  7820103324 |
+| 6  | historical |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    12   |  7828291083 |
+| 7  | historical |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    12   |  7819600414 |
+| 8  | historical |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    11   |  3621220748 |
+| 9  | historical | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    7    |  5023624997 |
+| 10 | historical |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    12   |  4940953673 |
+| 11 | historical |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    8    |  2459008424 |
+| 12 | historical |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    8    |  2470024072 |
+| 13 | historical |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    8    |  2465094544 |
+| 14 | historical |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    8    |  2453086367 |
+| 15 | historical |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    8    |  2470884787 |
+| 16 |   rcp26    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  6509379783 |
+| 17 |   rcp45    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 13238098514 |
+| 18 |   rcp45    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 13225574212 |
+| 19 |   rcp45    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 13205733304 |
+| 20 |   rcp45    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   |  6212537833 |
+| 21 |   rcp45    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 13592061158 |
+| 22 |   rcp45    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   |  8370521793 |
+| 23 |   rcp45    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  6488480043 |
+| 24 |   rcp45    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  6502728992 |
+| 25 |   rcp45    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  6490302665 |
+| 26 |   rcp45    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  6383549121 |
+| 27 |   rcp45    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  6501625308 |
+| 28 |   rcp85    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 13226304621 |
+| 29 |   rcp85    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 13211541961 |
+| 30 |   rcp85    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 13187643626 |
+| 31 |   rcp85    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   |  6197329848 |
+| 32 |   rcp85    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 13575984895 |
+| 33 |   rcp85    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   |  8350403306 |
+| 34 |   rcp85    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  6480651335 |
+| 35 |   rcp85    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  6493254014 |
+| 36 |   rcp85    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  6464472251 |
+| 37 |   rcp85    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  6376408634 |
+| 38 |   rcp85    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  6490836053 |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+['./cordex_db_report.py', 'EUR-11', 'huss', 'day', 'esgffiles']
++----+------------+-------------+-----------------------+------------+---------+-------------+
+|    | Experiment |  Institute  |     Driving Model     |   Model    | # Files | Volume [GB] |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+| 0  | evaluation |    CLMcom   |      ECMWF-ERAINT     | CCLM4-8-17 |    5    |  3487490355 |
+| 1  | evaluation |     DMI     |      ECMWF-ERAINT     |  HIRHAM5   |    6    |  2370091206 |
+| 2  | evaluation | IPSL-INERIS |      ECMWF-ERAINT     |  WRF331F   |    5    |  3514441835 |
+| 3  | evaluation |     KNMI    |      ECMWF-ERAINT     |  RACMO22E  |    8    |  4367962561 |
+| 4  | evaluation |     SMHI    |      ECMWF-ERAINT     |    RCA4    |    7    |  2562887010 |
+| 5  | historical |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    12   |  9835338509 |
+| 6  | historical |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    12   |  9843053568 |
+| 7  | historical |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    12   |  9777237772 |
+| 8  | historical |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    11   |  5705939853 |
+| 9  | historical | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    7    |  6162211212 |
+| 10 | historical |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    12   |  7183824553 |
+| 11 | historical |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    8    |  3014410765 |
+| 12 | historical |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    8    |  3019448982 |
+| 13 | historical |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    8    |  2985081026 |
+| 14 | historical |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    8    |  2980942301 |
+| 15 | historical |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    8    |  2989377811 |
+| 16 |   rcp26    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  7941188629 |
+| 17 |   rcp45    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 16615118132 |
+| 18 |   rcp45    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 16591576940 |
+| 19 |   rcp45    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 16475811766 |
+| 20 |   rcp45    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   |  9864056273 |
+| 21 |   rcp45    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 16642295057 |
+| 22 |   rcp45    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   | 12230050421 |
+| 23 |   rcp45    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  7884213518 |
+| 24 |   rcp45    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  7912337649 |
+| 25 |   rcp45    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  7797779037 |
+| 26 |   rcp45    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  7672442034 |
+| 27 |   rcp45    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  7791138290 |
+| 28 |   rcp85    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 16581555635 |
+| 29 |   rcp85    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 16554824738 |
+| 30 |   rcp85    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 16429404443 |
+| 31 |   rcp85    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   |  9864480572 |
+| 32 |   rcp85    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 16607037475 |
+| 33 |   rcp85    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   | 12256071949 |
+| 34 |   rcp85    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  7839902210 |
+| 35 |   rcp85    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  7877516650 |
+| 36 |   rcp85    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  7738963434 |
+| 37 |   rcp85    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  7651389237 |
+| 38 |   rcp85    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  7748411012 |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+['./cordex_db_report.py', 'EUR-11', 'hurs', 'day', 'esgffiles']
++----+------------+-----------+-----------------------+----------+---------+-------------+
+|    | Experiment | Institute |     Driving Model     |  Model   | # Files | Volume [GB] |
++----+------------+-----------+-----------------------+----------+---------+-------------+
+| 0  | evaluation |    DMI    |      ECMWF-ERAINT     | HIRHAM5  |    6    |  2519794351 |
+| 1  | evaluation |    KNMI   |      ECMWF-ERAINT     | RACMO22E |    8    |  3671802809 |
+| 2  | evaluation |    SMHI   |      ECMWF-ERAINT     |   RCA4   |    7    |  5235991981 |
+| 3  | historical |    DMI    |     ICHEC-EC-EARTH    | HIRHAM5  |    11   |  6083749557 |
+| 4  | historical |    KNMI   |     ICHEC-EC-EARTH    | RACMO22E |    12   |  6105435152 |
+| 5  | historical |    SMHI   | CNRM-CERFACS-CNRM-CM5 |   RCA4   |    8    |  6117507039 |
+| 6  | historical |    SMHI   |     ICHEC-EC-EARTH    |   RCA4   |    8    |  6119916789 |
+| 7  | historical |    SMHI   |   IPSL-IPSL-CM5A-MR   |   RCA4   |    8    |  6097094273 |
+| 8  | historical |    SMHI   |    MOHC-HadGEM2-ES    |   RCA4   |    8    |  6026326822 |
+| 9  | historical |    SMHI   |    MPI-M-MPI-ESM-LR   |   RCA4   |    8    |  6088353642 |
+| 10 |   rcp26    |    SMHI   |     ICHEC-EC-EARTH    |   RCA4   |    19   | 16128273234 |
+| 11 |   rcp45    |    DMI    |     ICHEC-EC-EARTH    | HIRHAM5  |    19   | 10478677553 |
+| 12 |   rcp45    |    KNMI   |     ICHEC-EC-EARTH    | RACMO22E |    19   | 10361268349 |
+| 13 |   rcp45    |    SMHI   | CNRM-CERFACS-CNRM-CM5 |   RCA4   |    19   | 16120040532 |
+| 14 |   rcp45    |    SMHI   |     ICHEC-EC-EARTH    |   RCA4   |    19   | 16125075908 |
+| 15 |   rcp45    |    SMHI   |   IPSL-IPSL-CM5A-MR   |   RCA4   |    19   | 16079345168 |
+| 16 |   rcp45    |    SMHI   |    MOHC-HadGEM2-ES    |   RCA4   |    19   | 15694793211 |
+| 17 |   rcp45    |    SMHI   |    MPI-M-MPI-ESM-LR   |   RCA4   |    19   | 16052247638 |
+| 18 |   rcp85    |    DMI    |     ICHEC-EC-EARTH    | HIRHAM5  |    19   | 10462047175 |
+| 19 |   rcp85    |    KNMI   |     ICHEC-EC-EARTH    | RACMO22E |    19   | 10365874693 |
+| 20 |   rcp85    |    SMHI   | CNRM-CERFACS-CNRM-CM5 |   RCA4   |    19   | 16108908684 |
+| 21 |   rcp85    |    SMHI   |     ICHEC-EC-EARTH    |   RCA4   |    19   | 16121665257 |
+| 22 |   rcp85    |    SMHI   |   IPSL-IPSL-CM5A-MR   |   RCA4   |    19   | 16068938960 |
+| 23 |   rcp85    |    SMHI   |    MOHC-HadGEM2-ES    |   RCA4   |    19   | 15705575013 |
+| 24 |   rcp85    |    SMHI   |    MPI-M-MPI-ESM-LR   |   RCA4   |    19   | 16049005231 |
++----+------------+-----------+-----------------------+----------+---------+-------------+
+['./cordex_db_report.py', 'EUR-11', 'sfcWind', 'day', 'esgffiles']
++----+------------+-------------+-----------------------+------------+---------+-------------+
+|    | Experiment |  Institute  |     Driving Model     |   Model    | # Files | Volume [GB] |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+| 0  | evaluation |    CLMcom   |      ECMWF-ERAINT     | CCLM4-8-17 |    5    |  3832407317 |
+| 1  | evaluation |     DMI     |      ECMWF-ERAINT     |  HIRHAM5   |    6    |  3379746609 |
+| 2  | evaluation | IPSL-INERIS |      ECMWF-ERAINT     |  WRF331F   |    5    |  3847060619 |
+| 3  | evaluation |     KNMI    |      ECMWF-ERAINT     |  RACMO22E  |    8    |  4366653946 |
+| 4  | evaluation |     SMHI    |      ECMWF-ERAINT     |    RCA4    |    7    |  3023619747 |
+| 5  | historical |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    12   | 10748319680 |
+| 6  | historical |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    12   | 10740764800 |
+| 7  | historical |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    12   | 10747271268 |
+| 8  | historical |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    11   |  8084090556 |
+| 9  | historical | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    7    |  6727952668 |
+| 10 | historical |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    12   |  7188725159 |
+| 11 | historical |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    8    |  3539068964 |
+| 12 | historical |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    8    |  3511734626 |
+| 13 | historical |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    8    |  3529770137 |
+| 14 | historical |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    8    |  3490316914 |
+| 15 | historical |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    8    |  3529598221 |
+| 16 |   rcp26    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  9267175442 |
+| 17 |   rcp45    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 18227875679 |
+| 18 |   rcp45    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 18188317977 |
+| 19 |   rcp45    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 18192818659 |
+| 20 |   rcp45    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   | 13961461306 |
+| 21 |   rcp45    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 18246530003 |
+| 22 |   rcp45    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   | 12168673173 |
+| 23 |   rcp45    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  9318654404 |
+| 24 |   rcp45    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  9264659720 |
+| 25 |   rcp45    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  9309006409 |
+| 26 |   rcp45    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  9099510446 |
+| 27 |   rcp45    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  9308192720 |
+| 28 |   rcp85    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 18227698953 |
+| 29 |   rcp85    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 18184316289 |
+| 30 |   rcp85    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 18186494340 |
+| 31 |   rcp85    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   | 13963856659 |
+| 32 |   rcp85    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 18246542912 |
+| 33 |   rcp85    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   | 12157970110 |
+| 34 |   rcp85    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |  9327096316 |
+| 35 |   rcp85    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |  9264893377 |
+| 36 |   rcp85    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |  9304057084 |
+| 37 |   rcp85    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  9103246058 |
+| 38 |   rcp85    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |  9304018701 |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+['./cordex_db_report.py', 'EUR-11', 'rsds', 'day', 'esgffiles']
++----+------------+-------------+-----------------------+------------+---------+-------------+
+|    | Experiment |  Institute  |     Driving Model     |   Model    | # Files | Volume [GB] |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+| 0  | evaluation |    CLMcom   |      ECMWF-ERAINT     | CCLM4-8-17 |    5    |  3637016199 |
+| 1  | evaluation |     DMI     |      ECMWF-ERAINT     |  HIRHAM5   |    6    |  2679052754 |
+| 2  | evaluation | IPSL-INERIS |      ECMWF-ERAINT     |  WRF331F   |    5    |  3628098336 |
+| 3  | evaluation |     KNMI    |      ECMWF-ERAINT     |  RACMO22E  |    8    |  5861650163 |
+| 4  | evaluation |     SMHI    |      ECMWF-ERAINT     |    RCA4    |    7    |  3323151750 |
+| 5  | historical |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    12   | 10214523907 |
+| 6  | historical |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    12   | 10200435460 |
+| 7  | historical |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    12   | 10316305332 |
+| 8  | historical |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    11   |  6452522515 |
+| 9  | historical | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    7    |  6345284369 |
+| 10 | historical |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    12   |  9660529117 |
+| 11 | historical |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    8    |  3795295318 |
+| 12 | historical |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    8    |  3784738865 |
+| 13 | historical |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    8    |  3792440464 |
+| 14 | historical |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    8    |  3736401290 |
+| 15 | historical |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    8    |  3838335927 |
+| 16 |   rcp26    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   | 10014192906 |
+| 17 |   rcp45    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 17339602365 |
+| 18 |   rcp45    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 17287734304 |
+| 19 |   rcp45    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 17445849975 |
+| 20 |   rcp45    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   | 11107598954 |
+| 21 |   rcp45    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 17244113085 |
+| 22 |   rcp45    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   | 16370599189 |
+| 23 |   rcp45    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   | 10038393004 |
+| 24 |   rcp45    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   | 10027406245 |
+| 25 |   rcp45    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   | 10063292377 |
+| 26 |   rcp45    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  9812740409 |
+| 27 |   rcp45    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   | 10169566136 |
+| 28 |   rcp85    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   | 17342067302 |
+| 29 |   rcp85    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   | 17281590446 |
+| 30 |   rcp85    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   | 17430511275 |
+| 31 |   rcp85    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   | 11091691195 |
+| 32 |   rcp85    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   | 17257657540 |
+| 33 |   rcp85    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   | 16332283181 |
+| 34 |   rcp85    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   | 10060474836 |
+| 35 |   rcp85    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   | 10055506024 |
+| 36 |   rcp85    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   | 10119119706 |
+| 37 |   rcp85    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |  9838447540 |
+| 38 |   rcp85    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   | 10213550915 |
++----+------------+-------------+-----------------------+------------+---------+-------------+

@@ -1,0 +1,108 @@
+#!/usr/bin/python
+# cordex2csv.py - HvW-17-12-2014
+'''
+Description:
+Queries the databse with the current state of the CORDEX-EUR mirror at IAC and
+writes a csv - file. The subset of the files, the desired output fields,
+the path to the database, and the path to the storage-root (e.g. relative to
+the IAC-network or relative to ela.cscs.ch) have to be defined in the source.
+
+'''
+
+# START OF CONFIGURATION #####################################################
+
+# ##########################################################
+# Define the set of files for output:                      #
+# The keys of the dictionary are ESGF "facets".            #
+# Values are lists.                                        #
+# Different facets are combined with "AND".                #
+# Multiple elements of a value-lst are combined with "OR". #
+# ##########################################################
+querydict = {"domain": ["EUR-11"],
+             "variable": ["tas", "pr"],
+             "time_frequency": ["mon"],
+             "experiment": ["rcp85", "historical", "rcp45", "rcp26"]}
+
+# ######################################################################
+# The desired fields of the output table.                              #
+# Appear as "header" in the first line of the csv-file.                #
+# IF THE FILENAME IS PRESENT, IT HAS TO BE THE LAST FIELD IN THE LIST! #
+# ######################################################################
+outputfields = ["experiment", "variable", "driving_model", "model", "filename"]
+# outputfields = ["filename"]
+# outputfields = ["size"]
+
+# ##########################
+# The path to the database #
+# ##########################
+dbname = '/net/bio/c2sm/hvwaldow/esget_cordex/db/cordex_eur_ALL.db'
+
+# ##############################
+# The path to the storage-root.#
+# ##############################
+prefix = '/net/atmos/data/CORDEX/'  # my desktop IAC
+# prefix = '/data/CORDEX/'  # atmos
+# prefix = '/store/c2sm/c2sme/cordex/'  # ela.cscs.ch
+
+# END OF CONFIGURATION ########################################################
+
+# import apsw
+import sqlite3
+import csv
+import sys
+import os.path
+import argparse
+
+
+class cordex2csv(object):
+    def __init__(self, dbname, querydict, outputfields, prefix):
+        self.dbname = dbname
+        self.querydict = querydict
+        self.outputfields = outputfields
+        self.prefix = prefix
+        self.db_prefix = '/data/CORDEX/'
+
+    def _in_clause(self, k, v):
+        return((k + ' in (') + (', '.join(['"'+v1+'"' for v1 in v])) + ')')
+
+    def _mod_path(self):
+        self.res = [x[0:-1]+[os.path.join(
+            self.prefix, x[-1].replace(self.db_prefix, '', 1))]
+            for x in self.res]
+
+    def query(self):
+        whereclause = ' AND '.join([self._in_clause(k, v)
+                                    for k, v in self.querydict.iteritems()])
+        sqlstring = '''SELECT {0}
+        FROM {1}
+        WHERE {2}'''.format(', '.join(self.outputfields),
+                            'localfiles', whereclause)
+        # conn = apsw.Connection(self.dbname)
+        conn = sqlite3.connect(self.dbname)
+        c = conn.cursor()
+        self.res = [list(x) for x in c.execute(sqlstring).fetchall()]
+        conn.close()
+        if 'filename' in self.outputfields:
+            self._mod_path()
+
+    def write_table(self, outputfile):
+        if type(outputfile) == file:
+            writer = csv.writer(outputfile)
+            writer.writerow(self.outputfields)
+            writer.writerows(self.res)
+        else:
+            with open(outputfile, 'wb') as f:
+                writer = csv.writer(f)
+                writer.writerow(self.outputfields)
+                writer.writerows(self.res)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("-o", "--outputfile",
+                        help='filename for output', default=sys.stdout)
+    args = parser.parse_args()
+    outputfile = args.outputfile
+
+    C = cordex2csv(dbname, querydict, outputfields, prefix)
+    C.query()
+    C.write_table(outputfile)

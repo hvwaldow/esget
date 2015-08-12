@@ -1,0 +1,54 @@
+['./report_jan', 'EUR-11', 'pr', 'day', 'localfiles']
++----+------------+-------------+-----------------------+------------+---------+-------------+
+|    | Experiment |  Institute  |     Driving Model     |   Model    | # Files | Volume [GB] |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+| 0  | evaluation |    CLMcom   |      ECMWF-ERAINT     | CCLM4-8-17 |    5    |     2.56    |
+| 1  | evaluation |     DMI     |      ECMWF-ERAINT     |  HIRHAM5   |    6    |     2.94    |
+| 2  | evaluation | IPSL-INERIS |      ECMWF-ERAINT     |  WRF331F   |    5    |     2.88    |
+| 3  | evaluation |     KNMI    |      ECMWF-ERAINT     |  RACMO22E  |    8    |     4.62    |
+| 4  | evaluation |     SMHI    |      ECMWF-ERAINT     |    RCA4    |    7    |     1.55    |
+| 5  | historical |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    12   |     7.67    |
+| 6  | historical |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    12   |     7.56    |
+| 7  | historical |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    12   |     7.95    |
+| 8  | historical |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    11   |     7.29    |
+| 9  | historical | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    7    |     5.09    |
+| 10 | historical |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    12   |     7.69    |
+| 11 | historical |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    8    |     1.78    |
+| 12 | historical |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    8    |     1.78    |
+| 13 | historical |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    8    |     1.73    |
+| 14 | historical |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    8    |     1.75    |
+| 15 | historical |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    8    |     1.84    |
+| 16 |   rcp26    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |     4.67    |
+| 17 |   rcp45    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   |    12.63    |
+| 18 |   rcp45    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   |    12.34    |
+| 19 |   rcp45    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   |    12.91    |
+| 20 |   rcp45    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   |    12.46    |
+| 21 |   rcp45    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   |    13.77    |
+| 22 |   rcp45    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   |    12.95    |
+| 23 |   rcp45    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |     4.68    |
+| 24 |   rcp45    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |     4.66    |
+| 25 |   rcp45    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |     4.51    |
+| 26 |   rcp45    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |     4.51    |
+| 27 |   rcp45    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |     4.8     |
+| 28 |   rcp85    |    CLMcom   | CNRM-CERFACS-CNRM-CM5 | CCLM4-8-17 |    19   |    12.43    |
+| 29 |   rcp85    |    CLMcom   |     ICHEC-EC-EARTH    | CCLM4-8-17 |    19   |    12.04    |
+| 30 |   rcp85    |    CLMcom   |    MPI-M-MPI-ESM-LR   | CCLM4-8-17 |    19   |    12.61    |
+| 31 |   rcp85    |     DMI     |     ICHEC-EC-EARTH    |  HIRHAM5   |    19   |    12.35    |
+| 32 |   rcp85    | IPSL-INERIS |   IPSL-IPSL-CM5A-MR   |  WRF331F   |    19   |    13.74    |
+| 33 |   rcp85    |     KNMI    |     ICHEC-EC-EARTH    |  RACMO22E  |    19   |    12.82    |
+| 34 |   rcp85    |     SMHI    | CNRM-CERFACS-CNRM-CM5 |    RCA4    |    19   |     4.67    |
+| 35 |   rcp85    |     SMHI    |     ICHEC-EC-EARTH    |    RCA4    |    19   |     4.63    |
+| 36 |   rcp85    |     SMHI    |   IPSL-IPSL-CM5A-MR   |    RCA4    |    19   |     4.49    |
+| 37 |   rcp85    |     SMHI    |    MOHC-HadGEM2-ES    |    RCA4    |    19   |     4.46    |
+| 38 |   rcp85    |     SMHI    |    MPI-M-MPI-ESM-LR   |    RCA4    |    19   |     4.77    |
++----+------------+-------------+-----------------------+------------+---------+-------------+
+['./report_jan', 'EUR-11', 'pr', 'day', 'unlinked']
++---+------------+-----------+------------------+----------+---------+-------------+
+|   | Experiment | Institute |  Driving Model   |  Model   | # Files | Volume [GB] |
++---+------------+-----------+------------------+----------+---------+-------------+
+| 0 | historical |  MPI-CSC  | MPI-M-MPI-ESM-LR | REMO2009 |    12   |    11.33    |
+| 1 |   rcp45    |  MPI-CSC  | MPI-M-MPI-ESM-LR | REMO2009 |    19   |     19.2    |
+| 2 |   rcp85    |  MPI-CSC  | MPI-M-MPI-ESM-LR | REMO2009 |    19   |     19.2    |
++---+------------+-----------+------------------+----------+---------+-------------+
+['./report_jan', 'EUR-11', 'pr', 'day', 'failed']
+EMPTY TABLE

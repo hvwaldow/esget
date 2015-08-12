@@ -1,0 +1,9 @@
+{   "project":["GeoMIP","geomip"],
+    "format":"application%2Fsolr%2Bjson",
+    "type":"File",
+    "latest":"true",
+    "replica":"false",
+    "variable":["tas", "tasmax", "tasmin", "ts", "fgco2", "fco2antt", "fco2fos", "fco2nat", "hfds", "rsdt", "rsut", "rlut", "zos", "zostoga", "tos", "cVeg", "fVegSoil", "fVegLitter", "cSoil", "cLitter", "cSoilFast", "cSoilSlow", "cSoilMedium", "cProduct", "lai", "nbp", "nep", "gpp", "ra", "rh", "fHarvest", "fGrazing", "fLuc", "fVegSoil", "fFire", "fLitterSoil", "pr", "prsn", "areacella",  "areacello",  "basin",  "deptho",  "mrsofc",  "orog",  "rootd",  "sftgif", "sftlf", "sftof",  "volcello", "thetao", "so"],
+    "time_frequency":["mon","fx"]
+}
+

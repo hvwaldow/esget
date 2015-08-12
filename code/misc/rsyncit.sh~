@@ -1,0 +1,13 @@
+targetprefix = /store/c2sm/c2sme/test/
+sourceprefix = /net/atmos/data/
+
+while line; do
+  source = $line
+  target = dirname $source
+  target = ${target#$sourceprefix}
+  target = ${targetprefix}$target
+  echo $source
+  echo
+  echo $target
+  echo '----------------------------------------------------------------'
+done

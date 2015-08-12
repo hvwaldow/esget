@@ -1,0 +1,18 @@
+# use esget to download a subset of Cordex for testing
+import sys
+import os
+
+import ConfigParser
+reload(ConfigParser)
+import esget_logger
+reload(esget_logger)
+import esget_db
+reload(esget_db)
+import esget_esgf
+reload(esget_esgf)
+import esget_fs
+reload(esget_fs)
+import esget_wget
+reload(esget_wget)
+import esget_local_files
+reload(esget_local_files)

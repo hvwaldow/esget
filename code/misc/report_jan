@@ -1,0 +1,88 @@
+#!/usr/bin/python
+#
+# Takes a variable (e.g. "pr") and a domain, e.g. "EUR-11",
+# a time_frequency (e.g. "day") and a table ("esgffiles" or "localfiles")
+# and reports no. of files and total size as a function
+# of institute, driving_model, and model.
+
+# import numpy as np
+# import matplotlib.pyplot as plt
+import apsw
+import prettytable as pt
+import pandas as pd
+from StringIO import StringIO
+import sys
+from getopt import getopt
+
+
+class ReportJan(object):
+    def __init__(self, domain, variable, table, time_frequency,
+                 dbname="/net/bio/c2sm/hvwaldow/esget_cordex/db/cordex_eur_ALL.db"):
+        self.domain = domain
+        self.variable = variable
+        self.table = table
+        self.time_frequency = time_frequency
+        self.dbname = dbname
+        self.rownames = ["Experiment", "Institute", "Driving Model",
+                         "Model", "# Files", "Volume [GB]"]
+
+    def connect(self, dbname):
+        conn = apsw.Connection(dbname)
+        c = conn.cursor()
+        return((conn, c))
+
+    def construct_query(self):
+        if self.table == "localfiles":
+            pluscond = '''AND unlink_date="0"
+            '''
+        else:
+            pluscond = ''
+        if self.table == "unlinked":
+            pluscond = '''AND unlink_date!="0"
+            '''
+            self.table = "localfiles"
+        query =\
+        ('''SELECT experiment, institute, driving_model, model, count(*), sum(size)
+        FROM {3}
+        WHERE domain="{0}" AND variable="{1}" AND time_frequency="{2}"
+        ''' +\
+        pluscond +\
+        '''GROUP BY experiment, institute, driving_model, model
+        ORDER BY experiment, institute, driving_model, model''').format(
+            self.domain, self.variable, self.time_frequency, self.table)
+        return(query)
+
+    def mk_report(self):
+        conn, c = self.connect(self.dbname)
+        result = c.execute(self.construct_query()).fetchall()
+        conn.close()
+        self.df = pd.DataFrame([dict(zip(self.rownames, x)) for x in result])
+        if not self.df.empty:
+            self.df = self.df[self.rownames]
+            self.df["Volume [GB]"] = self.df["Volume [GB]"].apply(
+                lambda x: round(float(x) / 10**9, 2))
+
+    def print_report(self):
+        if not self.df.empty:
+            output = StringIO()
+            self.df.to_csv(output)
+            output.seek(0)
+            print_table = pt.from_csv(output)
+            print(print_table)
+        else:
+            print("EMPTY TABLE")
+
+
+if __name__ == "__main__":
+    print(sys.argv)
+    try:
+        junk, domain, variable, time_frequency, table = getopt(sys.argv, "")[1]
+    except:
+        print("Usage: report_jan.py domain variable time_frequency table")
+        print("e.g. report_jan.py EUR-11 pr day localfiles")
+        print("<table> might be \"localfiles\" or \"esgffiles\"" +
+              "or \"failed\" or \"unlinked\"")
+        sys.exit(2)
+    rj = ReportJan(domain, variable, table, time_frequency)
+    rj.mk_report()
+    rj.print_report()

@@ -1,0 +1,11 @@
+{ "project": ["CORDEX"],
+  "format": "application%2Fsolr%2Bjson",
+  "type": "File",
+  "latest": "true",
+  "replica": "false",
+  "domain": "EUR-11",
+  "experiment": "historical",
+  "time_frequency": "day",
+  "variable": "prsn",
+  "model": "HIRHAM5"
+ }

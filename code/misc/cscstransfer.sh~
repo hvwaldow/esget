@@ -1,0 +1,12 @@
+#!/bin/bash
+
+targets="148.187.1.6 148.187.1.7 148.187.1.8"
+fromhosts="5/bio,5/atmos,5/thermo,5/litho"
+#targetdir="/store/c2sm/c2sme/cordex"
+targetdir="/store/c2sm/c2sme/cordextest"
+
+#parallel --basefile one-100 --xapply -S thermo echo "rsync {1}  " :::: one-100
+parallel -j4 --filter-hosts --cleanup --joblog cscstransfer.log \
+    --basefile syncdirs.txt --xapply -S $fromhosts --sshdelay 0.1 \
+    rsync --delete -rvutR {1} {2}:$targetdir :::: syncdirs.txt ::: $targets
+

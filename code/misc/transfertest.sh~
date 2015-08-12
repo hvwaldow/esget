@@ -1,0 +1,5 @@
+#!/bin/bash
+
+targets="148.187.1.6 148.187.1.7 148.187.1.8"
+fromhosts="bio,atmos,thermo,litho"
+
