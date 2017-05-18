@@ -1,3 +1,8 @@
+**Don't try to use this!
+It is unfinished and has no support.**
+
+**To mirror parts of the Earth System Grid Federation (ESGF) archive check out [Synda](https://github.com/Prodiguer/synda). That is also what [ETHZ-IAC](http://data.iac.ethz.ch/) uses now for all its mirroring-needs.**
+
 esget
 =====
 Earth System Grid gETer
