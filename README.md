@@ -8,7 +8,7 @@ esget
 Earth System Grid gETer
 -----------------------
 
-esget is a tool to mirror part of the Earth System Grid Federation (ESGF) distributed database. The output of many climate-related simulation projects is distributed via ESGF, e.g. CORDEX, CMIP5, GeoMIP, or PMIP3.
+Esget is a tool to mirror part of the Earth System Grid Federation (ESGF) distributed database. The output of many climate-related simulation projects is distributed via ESGF, e.g. CORDEX, CMIP5, GeoMIP, or PMIP3.
 
 esget is designed to deal with very large datasets. Its features include:
 
